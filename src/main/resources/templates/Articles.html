@@ -14,8 +14,9 @@
 <div class="container mt-5">
     <h1>Статьи</h1>
     <div th:each="el : ${articles}" class="alert alert-info mt-2">
-        <h3 th:text="${el.Title}"/>
-        <p th:text="${el.Anons}"/>
+        <h3 th:text="${el.title}"/>
+        <p th:text="${el.anons}"/>
+        <a th:href="'/Article/' + ${el.id}">Детальнее</a>
 
     </div>
 </div>

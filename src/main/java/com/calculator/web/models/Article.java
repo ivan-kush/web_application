@@ -53,4 +53,13 @@ public class Article {
     public void setViews(int views) {
         this.views = views;
     }
+
+    public Article() {
+    }
+
+    public Article(String title, String anons, String full_text) {
+        this.title = title;
+        this.anons = anons;
+        this.full_text = full_text;
+    }
 }
