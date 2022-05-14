@@ -17,14 +17,14 @@
         <h1 th:text="${el.title}"/>
         <p th:text="${el.full_text}"/>
         <p th:text="${el.views}"/>
-        <a th:href="'/Article/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a>
-        <a th:href="'/Article/' + ${el.id} + '/remove'" class="btn btn-warning">Удалить</a>
+        <a th:href="'/Articles/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a>
+        <a th:href="'/Articles/' + ${el.id} + '/remove'" class="btn btn-warning">Удалить</a>
 
     </div>
 </div>
 
 <div class="text-center">
-    <p th:text="'Articles ' " />
+    <p th:text="'News ' " />
 </div>
 </body>
 </html>
