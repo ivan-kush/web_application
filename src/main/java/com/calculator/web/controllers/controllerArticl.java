@@ -19,4 +19,10 @@ public class controllerArticl {
             model.addAttribute("articles", articl);
             return "Articles";
         }
+
+    @GetMapping("/Articles/add")
+    public String Articleadd(Model model) {
+        return "Articles-add";
+    }
+
 }
