@@ -48,4 +48,31 @@ public class ControllerArticl {
         model.addAttribute("articlee", art);
         return "Articles-details";
     }
+    @GetMapping("/Articles/{id}/edit")
+    public String ArticleEdit(@PathVariable(value = "id") long id, Model model) {
+        if(!articleRepository.existsById(id)) {
+            return "redirect:/Articles";
+        }
+        Optional<Article> articlee = articleRepository.findById(id);
+        ArrayList<Article> art = new ArrayList<>();
+        articlee.ifPresent(art::add);
+        model.addAttribute("articlee", art);
+        return "Articles-edit";
+    }
+
+    @PostMapping("/Articles/{id}/edit")
+    public String ArticleEditpost(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String anons, @RequestParam String full_text, Model model){
+        Article articlee = articleRepository.findById(id).orElseThrow();
+        articlee.setTitle(title);
+        articlee.setAnons(anons);
+        articlee.setFull_text(full_text);
+        articleRepository.save(articlee);
+        return "redirect:/Articles";
+    }
+    @PostMapping("/Articles/{id}/remove")
+    public String ArticleDel(@PathVariable(value = "id") long id, Model model){
+        Article articlee = articleRepository.findById(id).orElseThrow();
+        articleRepository.delete(articlee);
+        return "redirect:/Articles";
+    }
 }
