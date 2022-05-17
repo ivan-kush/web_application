@@ -9,19 +9,29 @@
 
 <header th:insert="blocks/header :: header"></header>
 
-<div class="container mt-5 mb-5">
-    <ul class="list-unstyled">
-        <li>Здравствуйте.</li>
-        <li>В данном приложении вы можете произвести расчеты коммунальных платежей,
-            а также сохранить полученные результаты для контроля оплаты. </li>
-        <li>Для выполнения
-            расчета перейдите в необходимый раздел калькулятора.</li>
 
-        </li>
-        <li> </li>
-    </ul>
+<div class="container mt-5">
+    <div class="bd-example">
+        <div class="modal-content rounded-6 shadow">
+            <div class="modal-body p-5">
 
-</div>
+                <h2 class="fw-bold mb-0">Здравствуйте! Добро пожаловать в WEB-калькулятор!</h2>
+
+                <ul class="d-grid gap-4 my-5 list-unstyled">
+                    <li class="d-flex gap-4"><div>
+                        <h5 class="mb-0">Данное WEB-приложение поможет вам произвести расчеты коммунальных платежей,
+                            а также сохранить полученные результаты для контроля оплаты.</h5>
+                    </div>
+                    </li>
+                    <li class="d-flex gap-4"><div>
+                        <h5 class="mb-0">Для выполнения
+                            расчета перейдите в раздел калькулятора.</h5>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br><br><br>
 
 <div class="container mt-5">
     <div class="bd-example">
@@ -58,17 +68,17 @@
                     </div>
                     </li>
                 </ul>
-
+                <form>
+                    <a th:href="'/Calculator' " class="btn btn-lg btn-primary mt-8 w-100">Перейти к расчёту!</a><br><br>
+                </form>
             </div>
         </div>
 
 
 
-        <form>
-            <a th:href="'/Calculator' " class="btn btn-lg btn-primary mt-8 w-100">Перейти к расчёту!</a><br><br>
-        </form>
 
-        <br><br>
+
+        <br>
 
     </div>
     </div>
