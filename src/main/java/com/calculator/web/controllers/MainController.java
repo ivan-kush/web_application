@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 
     @GetMapping("/")
-    public String home( Model model) {
-        model.addAttribute("title", "Главная страница");
-        return "home";
+public String home( Model model) {
+    model.addAttribute("title", "Главная страница");
+    return "home";
 
-    }
+}
     @GetMapping("/About")
     public String About( Model model) {
         model.addAttribute("title", "About");
@@ -21,6 +21,19 @@ public class MainController {
 
     }
 
+    @GetMapping("/FAQs")
+    public String FAQsMain(Model model) {
+        model.addAttribute("title", "FAQs");
+        return "FAQs";
+    }
 
-
+    @GetMapping("/Calculator")
+    public String Calculator(Model model) {
+        model.addAttribute("title", "Calculator");
+        return "Calculator";
+    }
 }
+
+
+
+
