@@ -32,6 +32,11 @@ public String home( Model model) {
         model.addAttribute("title", "Calculator");
         return "Calculator";
     }
+    @GetMapping("/SignIn")
+    public String SignIn(Model model) {
+        model.addAttribute("title", "SignIn");
+        return "SignIn";
+    }
 }
 
 
