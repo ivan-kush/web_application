@@ -8,29 +8,267 @@
 <body>
 
 <header th:insert="blocks/header :: header"></header>
-
-<div class="container mt-5 mb-5">
-    <ul class="list-unstyled">
-        <li>Здравствуйте.</li>
-
-        </li>
-        <li> </li>
-    </ul>
-
-</div>
-
 <div class="container mt-5">
     <div class="bd-example">
-
-
-
-
+        <div class="modal-content rounded-6 shadow">
 
     </div>
 </div>
+<div id="centerbottom-in" class="yjsgsitew">
+    <div id="holder2" class="holders">
+        <div class="yjsg-system-msg">
+        </div>
+          <br>
+
+                    <h1 class="article_title">
+                        Калькулятор для расчета стоимости коммунальных услуг </h1>  <br>
+
+                    <div class="clr"></div>
+                    <div class="newsitem_text">
+
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-block">
+                                <div class="table-responsive">
+                                    <table class="mostable border table-condensed" cellspacing="0" cellpadding="0">
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script language="javascript" type="text/javascript"><!--
+function parseFloatInput(v) {
+	return parseFloat( v.replace(',', '.') );
+}
+
+function roundMoney(v) {
+	if (v != 0) {
+		return(Math.round(100*v)/100);
+	} else {
+		return(v);
+	}
+}
+
+function roundQnt(v) {
+	if (v != 0) {
+		return(Math.round(100000*v)/100000);
+	} else {
+		return(v);
+	}
+}
+
+function doCalc(f, t) {
+	var s = isNaN(s = parseFloatInput(f.s.value)) ? 0.0 : s;
+       // var r = isNaN(r = parseInt(f.r.value)) ? 0 : r;
+	var h = isNaN(h = parseInt(f.h.value)) ? 0 : h;
+	var p = isNaN(p = parseInt(f.p.value)) ? 0 : p;
+	var q = isNaN(q = parseFloatInput(f.q.value)) ? 0.0 : q;
+
+	if ( (h < p) || (h == 0 && p > 0) ){
+		alert("Ошибка! Количество льготников не должно превышать количество проживающих.");
+		document.getElementsByName('p')[0].focus();
+		//document.getElementsByName('p').value = '';
+	}
+
+	if ( (p == h) && (h > 0) ) {
+		var extra = s-(p*20);	// разница между общей S(м2) и льготной S(м2)
+		//f.elements[t+'Qnt1'].value = s;
+		f.elements[t+'Qnt2'].value = s;
+		//f.elements[t+'Qnt3'].value = 0.0;
+		//f.elements[t+'Qnt4'].value = 0.0;
+			if (extra >= 0) {
+				f.elements[t+'Qnt1'].value = s-(p*20*0.5); // +10-?
+				f.elements[t+'Qnt3'].value = 0.0;
+				f.elements[t+'Qnt4'].value = (s*q)-(p*20*q*0.5); // Отопление
+				f.elements[t+'Qnt5'].value = 0.0;
+			} else {
+				f.elements[t+'Qnt1'].value = s-(s*0.5);
+				f.elements[t+'Qnt3'].value = 0.0;
+				f.elements[t+'Qnt4'].value = (s*q)-(s*q*0.5); // Отопление (льготн == общ.)
+				f.elements[t+'Qnt5'].value = 0.0;
+			}
+	}
+	else if ( (p == 0) && (h > 0) ) { // нет льготников, но есть жители
+		f.elements[t+'Qnt1'].value = s;
+		f.elements[t+'Qnt2'].value = s;
+		f.elements[t+'Qnt3'].value = 0.0;
+		f.elements[t+'Qnt4'].value = s*q; // Отопление по субсид. тарифу
+		f.elements[t+'Qnt5'].value = 0.0;
+	}
+	else {
+		if (h == 0) { // нет жителей
+			f.elements[t+'Qnt1'].value = 0.0;
+			f.elements[t+'Qnt2'].value = s;
+			f.elements[t+'Qnt3'].value = s;		// полное ТО, если нет проживающих
+			f.elements[t+'Qnt4'].value = 0.0;
+			f.elements[t+'Qnt5'].value = s*q;	// Отопление по полному тарифу, если нет жителей
+		} else if ( (h > p) ){
+			var extrat = s-(p*20);	// разница между общей S(м2) и льготной S(м2)
+			//var extra = s-(h*20+10);
+			f.elements[t+'Qnt2'].value = s;
+			//f.elements[t+'Qnt4'].value = 0.0;
+
+			if (extrat >= 0) {
+				f.elements[t+'Qnt1'].value = s-(p*20*0.5); // +10-?
+				f.elements[t+'Qnt3'].value = 0.0;
+				f.elements[t+'Qnt4'].value = (s*q)-(p*20*q*0.5); // Отопление
+				f.elements[t+'Qnt5'].value = 0.0;
+			} else {
+				f.elements[t+'Qnt1'].value = s-(s*0.5);
+				f.elements[t+'Qnt3'].value = 0.0;
+				f.elements[t+'Qnt4'].value = (s*q)-(s*q*0.5); // Отопление (льготн == общ.)
+				f.elements[t+'Qnt5'].value = 0.0;
+			}
+		}
+		/*else if ( (h < p) || (h = 0 && p > 0) ){
+			alert("Ошибка! Количество льготников не должно превышать количество проживающих.");
+		}*/
+		else {
+			f.elements[t+'Qnt1'].value = s-(s*0.5);
+			f.elements[t+'Qnt3'].value = 0.0;
+			f.elements[t+'Qnt4'].value = (s*q)-(s*q*0.5); // Отопление (льготн == общ.)
+			f.elements[t+'Qnt5'].value = 0.0;
+		}
+	}
+
+        /*if ((r == 1) && (h > 0)) {
+                f.elements[t+'Qnt1'].value = s;
+                f.elements[t+'Qnt3'].value = 0.0;
+        }*/
+
+	//f.elements[t+'Qnt4'].value = f.elements[t+'Qnt2'].value*q;
+	//f.elements[t+'Qnt5'].value = f.elements[t+'Qnt2'].value*q;
+
+	//f.elements[t+'Qnt6'].value = f.elements[t+'Qnt4'].value*q;
+
+	f.elements[t+'TotalSum'].value = 0.0;
+
+	for (var i=1; i <= 5; i++) {
+		f.elements[t+'Sum'+i].value = roundMoney(f.elements[t+'Qnt'+i].value*parseFloat(f.elements[t+'Tax'+i].value));
+		f.elements[t+'TotalSum'].value = parseFloat(f.elements[t+'TotalSum'].value)+parseFloat(f.elements[t+'Sum'+i].value);
+		f.elements[t+'Qnt'+i].value = roundQnt(f.elements[t+'Qnt'+i].value);
+	}
+
+	f.elements[t+'TotalSum'].value = roundMoney(f.elements[t+'TotalSum'].value);
+}
+
+function doSubmit(f) {
+	doCalc(f, 'n');
+	return false;
+}
+//--></script>
+                        <style>
+.mostable tr:hover {
+	background-color: #F0FAFF;
+}
+.mostable th {
+	background-color: #F5F5F5;
+	border-bottom: 1px solid #a8b5cc;
+}
+.mostable td {
+	border-bottom: 1px solid #a8b5cc;
+}
+.btop {
+	border-top: 1px solid #a8b5cc;
+}
+</style>
+                        <form action="#">
+                            <div class="table-responsive">
+                                <table class="mostable border" cellpadding="0" cellspacing="0" >
+                                    <tr><td colspan="4" class="btop">Площадь, м<sup>2</sup>:</td>
+                                        <td class="btop"><input type="text" name="s" class="inputbox" value="" size="3" maxSize="3" /></td></tr>
+
+                                    <!--<tr><td colspan="4">Количество комнат:</td>
+                                    <td><input type="text" name="r" class="inputbox" value="" size="2" maxSize="2" /></td></tr>-->
+
+                                    <tr><td colspan="4">Количество проживающих:</td>
+                                        <td><input type="text" name="h" class="inputbox" value="" size="2" maxSize="2" /></td></tr>
+
+                                    <tr><td colspan="4">Количество льготников<span style="color:blue"><sup>*</sup></span>:</td>
+                                        <td><input type="text" name="p" class="inputbox" value="" size="2" maxSize="2" /></td></tr>
+
+                                    <tr><td colspan="4">Расход тепла на отопление, ГКал/м<sup>2</sup>:</td>
+                                        <td><input type="text" name="q" class="inputbox" value="" size="9" maxSize="9" /></td></tr>
+
+                                    <tr><td colspan="5"><input type="button" name="bSubmit" class="btn btn-primary" value="Рассчитать" onClick="return doSubmit(this.form)" /></td></tr>
+
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>Ед. изм.</td>
+                                        <td>Количество</td>
+                                        <td>Тариф</td>
+                                        <td>Начислено</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Тех. обслуживание</b></td>
+                                        <td>м<sup>2</sup></td>
+                                        <td><input type="text" name="nQnt1" class="inputbox" value="" readonly /></td>
+                                        <td><input type="text" name="nTax1" class="inputbox" value="0.1398" readonly /></td>
+                                        <td><input type="text" name="nSum1" class="inputbox" value="" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Кап. ремонт</b></td>
+                                        <td>м<sup>2</sup></td>
+                                        <td><input type="text" name="nQnt2" class="inputbox" value="" readonly /></td>
+                                        <td><input type="text" name="nTax2" class="inputbox" value="0.1958" readonly /></td>
+                                        <td><input type="text" name="nSum2" class="inputbox" value="" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Тех. обслуживание</b><br>(полное возмещение)</td>
+                                        <td>м<sup>2</sup></td>
+                                        <td><input type="text" name="nQnt3" class="inputbox" value="" readonly /></td>
+                                        <td><input type="text" name="nTax3" class="inputbox" value="0.15" readonly /></td>
+                                        <td><input type="text" name="nSum3" class="inputbox" value="" readonly /></td>
+                                    </tr>
+                                    <!--
+                                    <tr>
+                                        <td><b>Кап. ремонт</b></td>
+                                        <td>м<sup>2</sup></td>
+                                        <td><input type="text" name="nQnt4" class="inputbox" value="" readonly /></td>
+                                        <td><input type="text" name="nTax4" class="inputbox" value="0.18" readonly /></td>
+                                        <td><input type="text" name="nSum4" class="inputbox" value="" readonly /></td>
+                                    </tr>
+                                    -->
+                                    <tr>
+                                        <td><b>Отопление</b></td>
+                                        <td>ГКал</td>
+                                        <td><input type="text" name="nQnt4" class="inputbox" value="" readonly /></td>
+                                        <td><input type="text" name="nTax4" class="inputbox" value="21.9245" readonly /></td>
+                                        <td><input type="text" name="nSum4" class="inputbox" value="" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Отопление</b><br>(полное возмещение)</td>
+                                        <td>ГКал</td>
+                                        <td><input type="text" name="nQnt5" class="inputbox" value="" readonly /></td>
+                                        <td><input type="text" name="nTax5" class="inputbox" value="118.85" readonly /></td>
+                                        <td><input type="text" name="nSum5" class="inputbox" value="" readonly /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><b>Итого</b></td>
+                                        <td><input type="text" name="nTotalSum" class="inputbox" style="color:green;font:bolder" value="" readonly /></td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <div class="clearm"></div>
+            </div>
+
+        </div>
+
+</form>
+</div></body>
+</html>
+
+<br><br><br>
 
 <div class="text-center">
-    <p th:text="' Вы на странице WEB-приложения для расчета коммунальных услуг.' " />
+    <p th:text="' Вы на странице калькулятора для расчета коммунальных услуг.' " />
 </div>
 
 
